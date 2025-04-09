@@ -127,6 +127,7 @@ func main() {
 	ticker := time.NewTicker(checkInterval)
 	defer ticker.Stop()
 
+	sendTelegramNotification(botToken, chatID, "Started service!")
 	performCheck(botToken, chatID)
 
 	for range ticker.C {
