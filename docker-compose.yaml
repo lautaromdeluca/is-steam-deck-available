@@ -1,0 +1,16 @@
+version: '3.8' 
+
+services:
+  steamdeck-checker:
+    build:
+      context: . 
+      dockerfile: Dockerfile 
+
+    image: steamdeck-checker:latest
+
+    container_name: steamdeck-watcher
+
+    env_file:
+      - ./.env
+
+    restart: unless-stopped
