@@ -39,7 +39,7 @@ func Check(targetURL, targetItemText string) (bool, error) {
 	)
 	allocCtx, cancelAlloc := chromedp.NewExecAllocator(context.Background(), opts...)
 	defer cancelAlloc()
-	taskCtx, cancelTask := chromedp.NewContext(allocCtx, chromedp.WithLogf(customLogf)) // Use local customLogf
+	taskCtx, cancelTask := chromedp.NewContext(allocCtx, chromedp.WithLogf(customLogf))
 	defer cancelTask()
 	runCtx, cancelRun := context.WithTimeout(taskCtx, pageLoadTimeout)
 	defer cancelRun()
@@ -49,9 +49,8 @@ func Check(targetURL, targetItemText string) (bool, error) {
 
 	err := chromedp.Run(runCtx,
 		chromedp.Navigate(targetURL),
-		chromedp.Sleep(fixedDelay), // Keep fixed delay from user code
+		chromedp.Sleep(fixedDelay),
 		chromedp.WaitVisible(itemContainerSelector, chromedp.ByQuery),
-		// Get HTML of the container ONLY (as per user's last code)
 		chromedp.OuterHTML(itemContainerSelector, &renderedHTML, chromedp.ByQuery),
 	)
 	if err != nil {

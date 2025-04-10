@@ -33,7 +33,6 @@ func Send(botToken, chatID, message string) error {
 		if readErr == nil {
 			errorDetails = string(bodyBytes)
 		}
-		// Log the error details from Telegram API if available
 		log.Printf("Notifier Error: Telegram API returned status %s. Body: %s", resp.Status, errorDetails)
 		return fmt.Errorf("notifier: telegram API request failed with status %s", resp.Status)
 	}

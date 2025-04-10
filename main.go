@@ -21,10 +21,8 @@ func main() {
 		log.Printf("Failed to send startup Telegram notification: %v", err)
 	}
 
-	// Perform the first check immediately
 	performCheck(cfg)
 
-	// Run subsequent checks based on the ticker
 	for range ticker.C {
 		performCheck(cfg)
 	}
@@ -36,7 +34,7 @@ func performCheck(cfg config.Config) {
 	if err != nil {
 		log.Printf("Main: Error during check: %v", err)
 		errMsg := fmt.Sprintf("💀 Checker Error: %v", err)
-		_ = notifier.Send(cfg.BotToken, cfg.ChatID, errMsg) // Ignore error during error reporting
+		_ = notifier.Send(cfg.BotToken, cfg.ChatID, errMsg)
 		return
 	}
 
@@ -51,7 +49,6 @@ func performCheck(cfg config.Config) {
 		log.Printf("!!! \a TARGET ITEM AVAILABLE: '%s' at: %s !!!", cfg.TargetItemText, cfg.TargetURL)
 		log.Println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 	} else {
-		// Log that the item is not available
 		log.Printf("Main: Target item '%s' not available yet.", cfg.TargetItemText)
 	}
 }
