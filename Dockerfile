@@ -7,7 +7,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 # Copy the rest of the source code
-COPY *.go ./
+COPY . .
 
 # Build the Go app statically
 # Output the binary as 'steamdeck-checker' within /app
