@@ -34,6 +34,11 @@ It uses a headless browser (`chromedp`) to properly render the page content gene
         # Contents of .env file
         TG_TOKEN=YOUR_ACTUAL_BOT_TOKEN_HERE
         TG_CHAT_ID=YOUR_ACTUAL_CHAT_ID_HERE
+        # Specifies how often the script checks the Steam page.
+        # Uses Go's time.ParseDuration string format. Valid time units are
+        # "ns", "us" (or "µs"), "ms", "s", "m", "h".
+        # Examples: "10m" (10 minutes), "5m30s" (5 minutes, 30 seconds), "2h" (2 hours).
+        CHECK_INTERVAL=10m
         ```
 
     * Replace the placeholders with your real token and chat ID.
